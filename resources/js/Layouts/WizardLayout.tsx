@@ -51,7 +51,7 @@ export default function WizardLayout({
                     </div>
                 </header>
 
-                <div className="flex-1 flex flex-col px-6">{children}</div>
+                <div className="flex-1 flex flex-col px-6 pb-14 sm:pb-16">{children}</div>
 
                 {!hideIndicator && (
                     <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/20 rounded-full pointer-events-none z-30" />

@@ -27,7 +27,7 @@ const DarkInput = forwardRef<HTMLInputElement, Props>(
                         caretColor: '#FF0061',
                     }}
                     className={clsx(
-                        'w-full h-14 rounded-[16px] px-4 border-0 font-medium',
+                        'w-full h-14 rounded-lg px-4 border-0 font-medium',
                         'placeholder:text-[#F5EFF7] placeholder:opacity-80',
                         'focus:ring-2 focus:ring-white/20 transition-all outline-none',
                         '[&:-webkit-autofill]:shadow-[0_0_0_1000px_#5F0B2F_inset]',

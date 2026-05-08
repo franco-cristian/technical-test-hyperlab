@@ -1,1 +1,83 @@
-{}
+{
+    "common": {
+        "next": "Siguiente",
+        "skip": "Omitir este paso",
+        "search": "Buscar",
+        "or": "OR"
+    },
+    "footer": {
+        "terms": "Terms of Service",
+        "privacy": "Privacy",
+        "cookies": "Cookies Policy",
+        "contact": "Contact"
+    },
+    "welcome": {
+        "title": "Bienvenido",
+        "description": "Para nosotros es importante saber cómo deseas usar la plataforma para mejorar tu experiencia y facilitar nuestros productos.",
+        "role_creator": "Creador",
+        "role_user": "Usuario"
+    },
+    "language": {
+        "title": "Selecciona tu Idioma",
+        "description": "Llega a otros mercados (Brasil con más de 212 millones de personas, Francia 68 Millones, Rusia 143 Millones, Italia 59 Millones) con la traducción completa de toda la plataforma.",
+        "switch_prompt": "Toca para cambiar",
+        "spanish": "Español",
+        "english": "Inglés"
+    },
+    "identity": {
+        "title": "Escribe tu Nombre Completo",
+        "placeholder": "Nombre Completo",
+        "note": "*Debe coincidir exactamente con el nombre que aparece en tu ID o Pasaporte. Este nombre no será visible para los usuarios."
+    },
+    "email": {
+        "title": "Escribe tu Correo Electrónico",
+        "placeholder": "Email",
+        "google_action": "Login with Google"
+    },
+    "password": {
+        "title": "Crea una Contraseña",
+        "placeholder": "Contraseña",
+        "requirement_1": "*Más de 8 carácteres",
+        "requirement_2": "*Una letra mayúscula",
+        "requirement_3": "*Un número"
+    },
+    "birth_date": {
+        "title": "¿Cúal es tu Fecha de Nacimiento?",
+        "placeholder": "mm/dd/yyyy",
+        "disclaimer": "Colaboramos con National Center for Missing & Exploited Children y las autoridades para la prevención de abuso y explotación de menores de edad."
+    },
+    "categories": {
+        "title": "Selecciona tus Categorías",
+        "limit_note": "Selecciona hasta 3 categorías con las que los usuarios podrán encontrar tu perfil"
+    },
+    "gender": {
+        "title": "Selecciona tu Género",
+        "options": {
+            "male": "Hombre",
+            "female": "Mujer",
+            "other": "Otro"
+        }
+    },
+    "socials": {
+        "title": "Ingresa tus Redes Sociales"
+    },
+    "avatar": {
+        "title": "Fotos de Perfil"
+    },
+    "bio": {
+        "title": "Escribe una breve Descripción",
+        "placeholder": "Descripción de mi cuenta"
+    },
+    "block_countries": {
+        "title": "¿Deseas Bloquear algún País?",
+        "placeholder": "Buscar País"
+    },
+    "username": {
+        "title": "Elige tu nombre de usuario",
+        "placeholder": "@Usuario"
+    },
+    "completion": {
+        "title": "¡Estamos Listos!",
+        "action": "Comenzar"
+    }
+}

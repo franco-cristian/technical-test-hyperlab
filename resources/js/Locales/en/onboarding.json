@@ -1,1 +1,83 @@
-{}
+{
+    "common": {
+        "next": "Next",
+        "skip": "Skip this step",
+        "search": "Search",
+        "or": "OR"
+    },
+    "footer": {
+        "terms": "Terms of Service",
+        "privacy": "Privacy",
+        "cookies": "Cookies Policy",
+        "contact": "Contact"
+    },
+    "welcome": {
+        "title": "Welcome",
+        "description": "It is important for us to know how you wish to use the platform to improve your experience and facilitate our products.",
+        "role_creator": "Creator",
+        "role_user": "User"
+    },
+    "language": {
+        "title": "Select your Language",
+        "description": "Reach other markets (Brazil with over 212 million people, France 68 Million, Russia 143 Million, Italy 59 Million) with full platform translation.",
+        "switch_prompt": "Tap to switch",
+        "spanish": "Spanish",
+        "english": "English"
+    },
+    "identity": {
+        "title": "Enter your Full Name",
+        "placeholder": "Full Name",
+        "note": "*Must match exactly the name on your ID or Passport. This name will not be visible to users."
+    },
+    "email": {
+        "title": "Enter your Email Address",
+        "placeholder": "Email",
+        "google_action": "Login with Google"
+    },
+    "password": {
+        "title": "Create a Password",
+        "placeholder": "Password",
+        "requirement_1": "*More than 8 characters",
+        "requirement_2": "*One uppercase letter",
+        "requirement_3": "*One number"
+    },
+    "birth_date": {
+        "title": "What is your Date of Birth?",
+        "placeholder": "mm/dd/yyyy",
+        "disclaimer": "We collaborate with the National Center for Missing & Exploited Children and authorities for the prevention of abuse and exploitation of minors."
+    },
+    "categories": {
+        "title": "Select your Categories",
+        "limit_note": "Select up to 3 categories so users can find your profile"
+    },
+    "gender": {
+        "title": "Select your Gender",
+        "options": {
+            "male": "Male",
+            "female": "Female",
+            "other": "Other"
+        }
+    },
+    "socials": {
+        "title": "Enter your Social Networks"
+    },
+    "avatar": {
+        "title": "Profile Photos"
+    },
+    "bio": {
+        "title": "Write a short Description",
+        "placeholder": "Account description"
+    },
+    "block_countries": {
+        "title": "Do you want to Block any Country?",
+        "placeholder": "Search Country"
+    },
+    "username": {
+        "title": "Choose your username",
+        "placeholder": "@Username"
+    },
+    "completion": {
+        "title": "We are Ready!",
+        "action": "Start"
+    }
+}

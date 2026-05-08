@@ -13,7 +13,10 @@ export default [
         files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
         languageOptions: {
             parser: tsparser,
-            globals: globals.browser,
+            globals: {
+                ...globals.browser,
+                route: 'readonly',
+            },
             parserOptions: {
                 ecmaFeatures: { jsx: true },
             },
@@ -25,6 +28,9 @@ export default [
             ...pluginJs.configs.recommended.rules,
             ...tseslint.configs.recommended.rules,
         },
+        settings: {
+            react: { version: 'detect' },
+        },
     },
     {
         files: ['**/*.{jsx,tsx}'],
@@ -35,14 +41,17 @@ export default [
             globals: {
                 ...globals.browser,
                 ...globals.serviceworker,
+                route: 'readonly',
             },
         },
         rules: {
-            ...pluginReact.configs.recommended.rules,
             'react/react-in-jsx-scope': 'off',
             'react/prop-types': 'off',
             '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
             '@typescript-eslint/no-explicit-any': 'off',
+        },
+        settings: {
+            react: { version: 'detect' },
         },
     },
     prettierConfig,
