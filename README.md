@@ -1,6 +1,6 @@
 # 🚀 Hyperlab Technical Test - Onboarding Flow
 
-This repository contains the resolution for the Hyperlab Technical Test, implementing a complete Onboarding Wizard and Dashboard using **Laravel 11, Docker (Sail), React, Inertia.js, and Tailwind CSS**.
+This repository contains the resolution for the Hyperlab Technical Test, implementing a complete Onboarding Wizard and Dashboard using **Laravel 13, Docker (Sail), React, Inertia.js, and Tailwind CSS**.
 
 ## 🛠️ Tech Stack & Architecture
 
