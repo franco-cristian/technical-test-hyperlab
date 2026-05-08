@@ -141,10 +141,10 @@ class OnboardingController extends Controller
         $request->user()->categories()->sync($request->categories);
 
         if ($request->user()->role === UserRole::CREATOR) {
-            return redirect()->route('onboarding.gender');
+            return redirect()->route('onboarding.gender'); 
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->route('onboarding.completion'); 
     }
 
     public function gender(): Response
@@ -219,28 +219,21 @@ class OnboardingController extends Controller
         return redirect()->route('onboarding.block_countries');
     }
 
-    public function blockCountries(): Response
-    {
-        return Inertia::render('Onboarding/Steps/BlockCountries');
-    }
+    public function blockCountries(): Response { return Inertia::render('Onboarding/Steps/BlockCountries'); }
 
     public function storeBlockCountries(Request $request): RedirectResponse
     {
         return redirect()->route('onboarding.username');
     }
 
-    public function username(): Response
-    {
-        return Inertia::render('Onboarding/Steps/Username');
-    }
+    public function username(): Response { return Inertia::render('Onboarding/Steps/Username'); }
 
     public function storeUsername(Request $request): RedirectResponse
     {
-        return redirect()->route('onboarding.completion');
+        $request->validate(['username' => 'required|string|max:50']);
+        
+        return redirect()->route('dashboard');
     }
 
-    public function completion(): Response
-    {
-        return Inertia::render('Onboarding/Steps/Completion');
-    }
+    public function completion(): Response { return Inertia::render('Onboarding/Steps/Completion'); }
 }
