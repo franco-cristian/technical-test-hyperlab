@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRole;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -61,10 +61,7 @@ class OnboardingController extends Controller
 
     public function storeEmail(Request $request): RedirectResponse
     {
-        $request->validate([
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-        ]);
-
+        $request->validate(['email' => 'required|string|lowercase|email|max:255|unique:'.User::class]);
         session(['onboarding.email' => $request->email]);
 
         return redirect()->route('onboarding.password');
@@ -78,7 +75,13 @@ class OnboardingController extends Controller
     public function storeRegister(Request $request): RedirectResponse
     {
         $request->validate([
-            'password' => ['required', Rules\Password::defaults()],
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+            ],
         ]);
 
         $role = session('onboarding.role', 'user');
@@ -101,7 +104,11 @@ class OnboardingController extends Controller
         Auth::login($user);
         session()->forget('onboarding');
 
-        return redirect()->route('onboarding.birth');
+        if ($user->role === UserRole::CREATOR) {
+            return redirect()->route('onboarding.birth');
+        }
+
+        return redirect()->route('onboarding.categories');
     }
 
     public function birth(): Response
@@ -109,28 +116,34 @@ class OnboardingController extends Controller
         return Inertia::render('Onboarding/Steps/BirthDate');
     }
 
+    public function storeBirth(Request $request): RedirectResponse
+    {
+        $request->validate(['birth_date' => 'required|date|before:today']);
+        $request->user()->update(['birth_date' => $request->birth_date]);
+
+        return redirect()->route('onboarding.categories');
+    }
+
     public function categories(): Response
     {
         return Inertia::render('Onboarding/Steps/Categories', [
-            'categories' => Category::all(['id', 'name', 'slug']),
+            'availableCategories' => Category::all(['id', 'name']),
         ]);
     }
 
-    public function updateDetails(Request $request): RedirectResponse
+    public function storeCategories(Request $request): RedirectResponse
     {
-        $user = $request->user();
-        $user->fill($request->only(['birth_date', 'gender', 'bio']));
+        $request->validate([
+            'categories' => 'required|array|min:1|max:3',
+            'categories.*' => 'exists:categories,id',
+        ]);
 
-        if ($request->hasFile('avatar')) {
-            $user->avatar_path = $request->file('avatar')->store('avatars', 'public');
+        $request->user()->categories()->sync($request->categories);
+
+        if ($request->user()->role === UserRole::CREATOR) {
+            return redirect()->route('onboarding.gender');
         }
 
-        $user->save();
-
-        if ($request->has('categories')) {
-            $user->categories()->sync($request->categories);
-        }
-
-        return redirect()->back();
+        return redirect()->route('dashboard');
     }
 }

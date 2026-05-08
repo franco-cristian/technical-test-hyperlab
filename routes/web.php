@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OnboardingController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -35,8 +36,20 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->prefix('onboarding')->name('onboarding.')->group(function () {
     Route::get('/birth-date', [OnboardingController::class, 'birth'])->name('birth');
+    Route::patch('/birth-date', [OnboardingController::class, 'storeBirth'])->name('storeBirth');
+
     Route::get('/categories', [OnboardingController::class, 'categories'])->name('categories');
-    Route::patch('/update', [OnboardingController::class, 'updateDetails'])->name('update');
+    Route::patch('/categories', [OnboardingController::class, 'storeCategories'])->name('storeCategories');
+
+    Route::get('/gender', function () {
+        return 'Gender View';
+    })->name('gender');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
