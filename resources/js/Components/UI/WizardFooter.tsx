@@ -6,13 +6,25 @@ interface Props {
     nextText?: string;
     disabled?: boolean;
     isLoading?: boolean;
+    skipUrl?: string;
 }
 
-export default function WizardFooter({ nextText, disabled, isLoading }: Props) {
+export default function WizardFooter({ nextText, disabled, isLoading, skipUrl }: Props) {
     const { t } = useTranslation();
 
     return (
         <div className="w-full shrink-0 pt-4 mt-auto">
+            {skipUrl && (
+                <div className="flex justify-center mb-6">
+                    <Link
+                        href={skipUrl}
+                        className="text-xs text-gray-400 hover:text-white transition-colors"
+                    >
+                        {t('common.skip')}
+                    </Link>
+                </div>
+            )}
+
             <BrandButton
                 className="w-full shadow-lg mb-14 sm:mb-16"
                 disabled={disabled}

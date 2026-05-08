@@ -41,9 +41,25 @@ Route::middleware('auth')->prefix('onboarding')->name('onboarding.')->group(func
     Route::get('/categories', [OnboardingController::class, 'categories'])->name('categories');
     Route::patch('/categories', [OnboardingController::class, 'storeCategories'])->name('storeCategories');
 
-    Route::get('/gender', function () {
-        return 'Gender View';
-    })->name('gender');
+    Route::get('/gender', [OnboardingController::class, 'gender'])->name('gender');
+    Route::patch('/gender', [OnboardingController::class, 'storeGender'])->name('storeGender');
+
+    Route::get('/socials', [OnboardingController::class, 'socials'])->name('socials');
+    Route::patch('/socials', [OnboardingController::class, 'storeSocials'])->name('storeSocials');
+
+    Route::get('/avatar', [OnboardingController::class, 'avatar'])->name('avatar');
+    Route::post('/avatar', [OnboardingController::class, 'storeAvatar'])->name('storeAvatar');
+
+    Route::get('/bio', [OnboardingController::class, 'bio'])->name('bio');
+    Route::patch('/bio', [OnboardingController::class, 'storeBio'])->name('storeBio');
+
+    Route::get('/block-countries', [OnboardingController::class, 'blockCountries'])->name('block_countries');
+    Route::patch('/block-countries', [OnboardingController::class, 'storeBlockCountries'])->name('storeBlockCountries');
+
+    Route::get('/username', [OnboardingController::class, 'username'])->name('username');
+    Route::patch('/username', [OnboardingController::class, 'storeUsername'])->name('storeUsername');
+
+    Route::get('/completion', [OnboardingController::class, 'completion'])->name('completion');
 });
 
 Route::middleware('auth')->group(function () {

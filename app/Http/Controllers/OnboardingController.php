@@ -146,4 +146,101 @@ class OnboardingController extends Controller
 
         return redirect()->route('dashboard');
     }
+
+    public function gender(): Response
+    {
+        return Inertia::render('Onboarding/Steps/Gender');
+    }
+
+    public function storeGender(Request $request): RedirectResponse
+    {
+        $request->validate(['gender' => 'required|in:male,female,other']);
+        $request->user()->update(['gender' => $request->gender]);
+
+        return redirect()->route('onboarding.socials');
+    }
+
+    public function socials(): Response
+    {
+        return Inertia::render('Onboarding/Steps/Socials');
+    }
+
+    public function storeSocials(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'instagram' => 'nullable|url|max:255',
+            'tiktok' => 'nullable|url|max:255',
+            'x' => 'nullable|url|max:255',
+            'reddit' => 'nullable|url|max:255',
+            'facebook' => 'nullable|url|max:255',
+        ]);
+
+        $platforms = ['instagram', 'tiktok', 'x', 'reddit', 'facebook'];
+        $request->user()->socialLinks()->delete();
+
+        foreach ($platforms as $platform) {
+            if ($request->filled($platform)) {
+                $request->user()->socialLinks()->create([
+                    'platform' => $platform,
+                    'url' => $request->input($platform),
+                ]);
+            }
+        }
+
+        return redirect()->route('onboarding.avatar');
+    }
+
+    public function avatar(): Response
+    {
+        return Inertia::render('Onboarding/Steps/Avatar');
+    }
+
+    public function storeAvatar(Request $request): RedirectResponse
+    {
+        $request->validate(['avatar' => 'nullable|image|max:4096']);
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $request->user()->update(['avatar_path' => $path]);
+        }
+
+        return redirect()->route('onboarding.bio');
+    }
+
+    public function bio(): Response
+    {
+        return Inertia::render('Onboarding/Steps/Bio');
+    }
+
+    public function storeBio(Request $request): RedirectResponse
+    {
+        $request->validate(['bio' => 'nullable|string|max:1000']);
+        $request->user()->update(['bio' => $request->bio]);
+
+        return redirect()->route('onboarding.block_countries');
+    }
+
+    public function blockCountries(): Response
+    {
+        return Inertia::render('Onboarding/Steps/BlockCountries');
+    }
+
+    public function storeBlockCountries(Request $request): RedirectResponse
+    {
+        return redirect()->route('onboarding.username');
+    }
+
+    public function username(): Response
+    {
+        return Inertia::render('Onboarding/Steps/Username');
+    }
+
+    public function storeUsername(Request $request): RedirectResponse
+    {
+        return redirect()->route('onboarding.completion');
+    }
+
+    public function completion(): Response
+    {
+        return Inertia::render('Onboarding/Steps/Completion');
+    }
 }
